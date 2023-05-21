@@ -1,126 +1,105 @@
-import re
 import math
-import os
-#SISTEMA DE LOGIN E CRIAÇÃO DE LOGIN
+import os 
+# SISTEMA DE REMATRICULA 
 
-# VARIAVEIS UTILIZADAS NO CODIGO.
+def matricula_escola():
+    inicial = input("[1] - Login | [2] - Fazer Matricula : ")
 
-# VARIAVEIS UTILIZADAS NA CRAÇÃO DA TELA DE LOGIN E CRIAÇÃO DA CONTA.
-ra = ""
-senha = ""
-new_user = ""
-new_pass = ""
-
-# VATIAVEIS UTILIZAFAS NA CRIAÇÃO DAS INFORMAÇÕES DO USUARIO, BOLETIM E REMATRICULA.
-boletim_materias_e_notas = ["Analise de dados:10", "Segurança da informação:10", "Gerencia de Projetos em ti:10", "Desenvolvimento de negocio com agilidade:10", "Projeto em gestão de sistemas:10", "Pssquisa Operacional:10"]
-
-media_notas = sum([10,10,10,10,10,10])
-
-
-name = "Lucas Oliveira Campos"
-cpf = 1010
-data_de_nascimento = float(29_06_2004)
-
-confirm_ra = ""
-confirm_cpf =""
-
-print("Seja Bem vindo")
-
-
-# TELA DE FAZER LOGIN E SENHA 
-tela_inicial = int(input("1-Login; 2-Criar Conta\n"))
-
-# TELA DE LOGIN._
-if tela_inicial == 1:
-    while ra != "1234" or senha != "123":
-        ra = input("RA:")
-        senha = input("Senha:")
-
-        if ra != "1234" or senha!= "123":
-            print("Senha ou ra incorreto")
+    if inicial == '1':
+        ra = input("Insira seu RA: ")
+        confirm_ra = input("Confirme o RA: ")
+        if ra == confirm_ra:
+            senha = input("Insira sua senha: ")
+            confirm_senha = input("Confirme a senha: ")
+            if senha == confirm_senha:
+                pass
+                os.system('cls')
+            else:
+                print("As senhas não estão iguais.")
+                return matricula_escola()
         else:
-            print("Login feito com sucesso")
-            break
-            
-    os.system("cls")
-
-    print(f"Olá {ra}")
-
-    tela_usuario = int(input("3-PERFIL; 4-BOLETIM DO SEMSTRE; 5-REMATRICULA\n"))
-            
-
-    os.system("cls")
-            # CONFIGURAÇÕES DENTRO DA TELA DE USUARIO
-
-            # INFORMAÇÕES DO PERFIL DO USUARIO
-    if tela_usuario == 3:
-                print("Nome Completo:\n Luacs Oliveira Campos")
-                print("Data de Nascimento: 29/06/2004")
-                print("Celular: (11) 95073-5140")
-                print("CPF: XXXXXX66885")
-                print("RG: XXXXX2174")
-                print("Nome da mãe: Ednalva Oliveira dos Santos")
-                print("Nome do pai: Wellington de Oliveira Santos")
-                print("Endereço: Rua Quatorze de Novembro, 11")
-                print("Os dados só podem ser alterados na secretaria!!")
-
-            # BOLETIM DO PRIMEIRO SEMESTRE.
-    elif tela_usuario == 4:
-                print("BOLETIM DO PRIMEIRO SEMESTRE\n")
-                
-                for boletim_materias_e_notas in boletim_materias_e_notas:
-                    print(boletim_materias_e_notas )
-                    print("\n")
-
-            # MEDIA DAS NOTAS 
-                    print(f"Sua media é:{media_notas}") 
-            
-if media_notas >= 8:
-                print("Parabens você passou de semestre sem pegar nenhuma dp\n")
-else:
-                print("Você ficou dp\n")
-
-                print("\n")
-                
-                print("FALTAS: 1\n")
-
-            # REMATRICULA.
-if tela_usuario == 5:
-                while confirm_ra != ra or confirm_cpf != cpf:
-                    confirm_cpf = int(input("Confirme CPF:"))
-                    confirm_ra = int(input("Confirme ra:"))
-
-                    if confirm_cpf != "1010" or confirm_ra != "1234":
-                        print("Os dados não se coincidem.")
-                    else:
-                        print("Os dados estão coreetos")
-                    os.system("cls")
-                    break
-
-                print("QR CODE")
-                print("BOLETO\n")
-
-                print("Cartões")
-                
-
-# TELA DE CRIAÇÃO DE CONTA.
-if tela_inicial == 2:
-    while new_user != "Usuario" or new_pass != input("Senha:"):
-        new_user = input("Usuario:")
-        new_pass = input("Senha:")
-        confirm_pass = input("Confirmar senha:")
-
-        if confirm_pass != new_pass:
-            print("As senhas não se coincidem")
-        else:
-            print("Conta criada com sucesso")
-            os.system("cls")
-            print("Olá", new_user)
-            break
-
+            print("Os RA não está iguais")
+            return matricula_escola()
         
-            
-    
+        if ra == 'admin' and senha == '123':
 
+            print("Olá", ra)
+            perfil = input("[1] - Dados Pessoais \n[2] - Notas \n[3] - Ocorrencias \n[4] - Rematricula: ")
+
+            if perfil == '1':
+                dados_pessoais = print("Nome: Lucas Olivera Campos \nData de nascimento: 29/06/2004 \nCPF: XXXXXXXX \nRG: XXXXXXXX, \nTelefone: Celular: (11) 95073-5140 \nNome da mãe: Ednalva Oliveira dos Santos \nNome do pai: Wellington de Oliveira Santos \nEndereço: Rua Quatorze de Novembro, 11 \nOs dados só podem ser alterados na secretaria" )
+            elif perfil == '2':
+                notas = print("Analise de dados:10 \nSegurança da informação:10 \nGerencia de Projetos em ti:10 \nDesenvolvimento de negocio com agilidade:10 \nProjeto em gestão de sistemas:10 \nPssquisa Operacional:10")
+                
+                media = (10*6)/6
+                print("A sua média é: ", media)
+
+            elif perfil == '3':
+                ocorrencias = print("O usuario não tem nenhuma ocorrencia")
+
+            elif perfil == '4':
+                cpf = input("CPF: ")
+                confirm_cpf = input("COnfirme o cpf: ")
+
+                if cpf == confirm_cpf:
+                    modo_de_pagamento = input("[1] - Cartão de credito \n[2] - Cratão de debito \n[3] - Pix \n[4] - Boleto: ")
+
+                    if modo_de_pagamento == '1':
+                        cartao_credito = input("Digite o número do cartão de crédito: ")
+                        validade = input("Digite a validade do cartão (MM/AA): ")
+                        codigo_seguranca = input("Digite o código de segurança do cartão: ")
+                        print("Pagamento com cartão de crédito realizado com sucesso!")
+
+                    elif modo_de_pagamento == '2':
+                        cartao_debito = input("Digite o número do cartão de débito: ")
+                        senha = input("Digite a senha do cartão: ")
+                        print("Pagamento com cartão de débito realizado com sucesso!")
+
+                    elif modo_de_pagamento == '3':
+                        chave_pix = input("Digite a chave PIX: ")
+                        valor = float(input("Digite o valor da transação: "))
+                        print("Pagamento com PIX realizado com sucesso!")
+
+                    elif modo_de_pagamento == '4':
+                        boleto = input("Digite o código de barras do boleto: ")
+                        print("Pagamento com boleto realizado com sucesso!")
+
+                    else:
+                        print("Opção de pagamento inválida!")
+        else:
+            print("Os dados não se coincidem.")
+            return matricula_escola()
+    
+    elif inicial == '2':
+        nome_ = str(input("Coloque o seu nome: "))
+        cpf_ = str(input("CPF: "))
+        cpf_confirm = str(input("Confirme o CPF: "))
+        nome_mae = str(input("Nome da mãe: "))
+        nome_pai = str(input("Nome do pai: "))
+        first_parcela = input("A primeira parcela é de R$500 e assim irá ficar até o final do curso.\nOPÇÕES DE PAGAMENTO:\n[c] - Cartão de crédito\n[d] - Cartão de débito\n[p] - Pix\n[b] - Boleto: ")
+
+        if cpf_ != cpf_confirm:
+            print("CPF não confirmado. Pagamento não realizado.")
+        else:
+            if first_parcela == 'c':
+                cartao_credito = input("Digite o número do cartão de crédito: ")
+                validade = input("Digite a validade do cartão (MM/AA): ")
+                codigo_seguranca = input("Digite o código de segurança do cartão: ")
+                print("Pagamento com cartão de crédito realizado com sucesso!")
+            elif first_parcela == 'd':
+                cartao_debito = input("Digite o número do cartão de débito: ")
+                senha = input("Digite a senha do cartão: ")
+                print("Pagamento com cartão de débito realizado com sucesso!")
+            elif first_parcela == 'p':
+                chave_pix = input("Digite a chave PIX: ")
+                valor = print("Valor da transação: R$500")
+                print("Pagamento com PIX realizado com sucesso!")
+            elif first_parcela == 'b':
+                boleto = input("Digite o código de barras do boleto: ")
+                print("Pagamento com boleto realizado com sucesso!")
+            else:
+                print("Opção de pagamento inválida!") 
+                return matricula_escola()
+matricula_escola()
 
 
